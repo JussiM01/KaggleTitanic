@@ -22,6 +22,8 @@ test["Sex"][test["Sex"] == "female"] = 1
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
 features_one = train[["Pclass", "Sex", "Age", "Fare"]].values
+print('features_one', features_one)
+print('target', target)
 
 # The missing values (NaN values) of the columns are replaced with the median.
 train["Fare"] = train["Fare"].fillna(train["Fare"].median())

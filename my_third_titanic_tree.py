@@ -56,7 +56,7 @@ my_tree_three = tree.DecisionTreeClassifier()
 my_tree_three = my_tree_three.fit(features_three, target)
 
 # Creastes a table of test features.
-test_features = test[
+test_features = test_two[
     ["Pclass", "Sex", "Age", "Fare", "SibSp", "Parch", "family_size"]].values
 
 # Creates a prediction from the test features.

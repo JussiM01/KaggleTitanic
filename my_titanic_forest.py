@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import cvs as cvs
 from sklearn.ensamble import RandomForestClassifier
 
 # This line had to be added inorder for chained assignment to work properly.

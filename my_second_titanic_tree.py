@@ -19,6 +19,18 @@ train["Sex"][train["Sex"] == "female"] = 1
 test["Sex"][test["Sex"] == "male"] = 0
 test["Sex"][test["Sex"] == "female"] = 1
 
+# train["Age"] = train["Age"].fillna(train["Age"].median())
+
+# # The "Embarked" classes in the train table are converted to integers.
+# train["Embarked"][train["Embarked"] == "S"] = 0
+# train["Embarked"][train["Embarked"] == "C"] = 1
+# train["Embarked"][train["Embarked"] == "Q"] = 2
+#
+# # The "Embarked" classes in the test table are converted to integers.
+# test["Embarked"][test["Embarked"] == "S"] = 0
+# test["Embarked"][test["Embarked"] == "C"] = 1
+# test["Embarked"][test["Embarked"] == "Q"] = 2
+
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
 features_one = train[["Pclass", "Sex", "Age", "Fare"]].values
@@ -28,9 +40,11 @@ features_one = train[["Pclass", "Sex", "Age", "Fare"]].values
 my_tree_one = tree.DecisionTreeClassifier()
 my_tree_one = my_tree_one.fit(features_one, target)
 
-# The missing values (NaN values) of the columns are replaced with the median.
+# # Creates and initializes the column "Survived".
+# test["Survived"] = 0
+
+# The missing values (NaN values) of the "Fare" column are replaced with median.
 test["Fare"] = test["Fare"].fillna(test["Fare"].median())
-test["Age"] = test["Age"].fillna(test["Fare"].median())
 
 # Creastes a table of test features.
 test_features = test[["Pclass", "Sex", "Age", "Fare"]].values
@@ -43,4 +57,4 @@ PassengerId = np.array(test["PassengerId"]).astype(int)
 my_solution = pd.DataFrame(my_prediction, PassengerId, columns = ["Survived"])
 
 # Solution is converted to CSV file.
-my_solution.to_csv('my_first_titanic_tree.csv', index_label = ["PassengerId"])
+my_solution.to_csv('my_first_titanic_tree.csv', index = False)

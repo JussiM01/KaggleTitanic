@@ -42,7 +42,7 @@ target = train["Survived"].values
 features_two = train[
         ["Pclass", "Sex", "Age", "Fare", "SibSp", "Parch", "Embarked"]].values
 
-# The first version of the decision tree is created and fitted.
+# The second version of the decision tree is created and fitted.
 # (Other versions of the decision tree are in different files.)
 my_tree_two = tree.DecisionTreeClassifier(max_depth = 10, min_samples_split = 5,
         random_state = 1)

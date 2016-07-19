@@ -50,7 +50,7 @@ features_three = train_two[
 # Table for survival values is created.
 target = train_two["Survived"].values
 
-# The first version of the decision tree is created and fitted.
+# The third version of the decision tree is created and fitted.
 # (Other versions of the decision tree are in different files.)
 my_tree_three = tree.DecisionTreeClassifier()
 my_tree_three = my_tree_three.fit(features_three, target)

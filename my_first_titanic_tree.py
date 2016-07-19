@@ -30,7 +30,7 @@ my_tree_one = my_tree_one.fit(features_one, target)
 
 # The missing values (NaN values) of the columns are replaced with the median.
 test["Fare"] = test["Fare"].fillna(test["Fare"].median())
-test["Age"] = test["Age"].fillna(test["Fare"].median())
+test["Age"] = test["Age"].fillna(test["Age"].median())
 
 # Creastes a table of test features.
 test_features = test[["Pclass", "Sex", "Age", "Fare"]].values

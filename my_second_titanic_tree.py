@@ -40,7 +40,7 @@ test["Embarked"] = test["Embarked"].fillna(0)
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
 features_two = train[
-        ["Pclass", "Sex", "Age", "Fare", "sibSp", "Parch", "Embarked"]].values
+        ["Pclass", "Sex", "Age", "Fare", "SibSp", "Parch", "Embarked"]].values
 
 # The first version of the decision tree is created and fitted.
 # (Other versions of the decision tree are in different files.)
@@ -50,7 +50,7 @@ my_tree_two = my_tree_two.fit(features_two, target)
 
 # Creastes a table of test features.
 test_features = test[
-        ["Pclass", "Sex", "Age", "Fare", "sibSp", "Parch", "Embarked"]].values
+        ["Pclass", "Sex", "Age", "Fare", "SibSp", "Parch", "Embarked"]].values
 
 # Creates a prediction from the test features.
 my_prediction = my_tree_two.predict(test_features)

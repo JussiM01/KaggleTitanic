@@ -40,8 +40,8 @@ test["Embarked"] = test["Embarked"].fillna(0)
 # Creates new tables with the added feature "family_size".
 train_two = train.copy()
 test_two = test.copy()
-train_two["family_size"] train_two["SibSp"] + train_two["Parch"] + 1
-test_two["family_size"] test_two["SibSp"] + test_two["Parch"] + 1
+train_two["family_size"] = train_two["SibSp"] + train_two["Parch"] + 1
+test_two["family_size"] = test_two["SibSp"] + test_two["Parch"] + 1
 
 # Creates new feature set with added feature "family_size".
 features_three = train_two[

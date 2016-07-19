@@ -40,7 +40,7 @@ test["Embarked"] = test["Embarked"].fillna(0)
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
 features_forest = train[
-        ["Pclass", "Age", "Sex" "Fare", "SibSp", "Parch", "Embarked"]].values
+        ["Pclass", "Age", "Sex", "Fare", "SibSp", "Parch", "Embarked"]].values
 
 # Building and fitting the forest.
 forest = tree.DecisionTreeClassifier(max_depth = 10, min_samples_split = 2,

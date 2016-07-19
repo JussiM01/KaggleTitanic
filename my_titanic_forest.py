@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.ensamble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 # This line had to be added inorder for chained assignment to work properly.
 pd.options.mode.chained_assignment = None

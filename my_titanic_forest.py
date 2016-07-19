@@ -43,7 +43,7 @@ features_forest = train[
         ["Pclass", "Age", "Sex", "Fare", "SibSp", "Parch", "Embarked"]].values
 
 # Building and fitting the forest.
-forest = tree.DecisionTreeClassifier(max_depth = 10, min_samples_split = 2,
+forest = RandomForestClassifier(max_depth = 10, min_samples_split = 2,
         n_estimators = 100, random_state = 1)
 my_forest = forest.fit(features_forest, target)
 

@@ -24,7 +24,7 @@ target = train["Survived"].values
 features_one = train[["Pclass", "Sex", "Age", "Fare"]].values
 
 # The missing values (NaN values) of the columns are replaced with the median.
-trai["Fare"] = train["Fare"].fillna(train["Fare"].median())
+train["Fare"] = train["Fare"].fillna(train["Fare"].median())
 train["Age"] = train["Age"].fillna(train["Age"].median())
 test["Fare"] = test["Fare"].fillna(test["Fare"].median())
 test["Age"] = test["Age"].fillna(test["Age"].median())

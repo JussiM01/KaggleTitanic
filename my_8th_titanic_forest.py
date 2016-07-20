@@ -50,7 +50,7 @@ test["family_size"] = test["SibSp"] + test["Parch"] + 1
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
 features_forest = train[
-        ["Sex", "family_size", "Pclass"]].values
+        ["Sex", "family_size", "Pclass", "Cabin"]].values
 
 # Building and fitting the forest.
 forest = RandomForestClassifier(max_depth = 10, min_samples_split = 2,
@@ -59,7 +59,7 @@ my_forest = forest.fit(features_forest, target)
 
 # Creates a table of test features.
 test_features = test[
-        ["Sex", "family_size", "Pclass"]].values
+        ["Sex", "family_size", "Pclass", "Cabin"]].values
 
 # Creates a prediction from the test features.
 pred_forest = my_forest.predict(test_features)
@@ -69,4 +69,4 @@ PassengerId = np.array(test["PassengerId"]).astype(int)
 my_solution = pd.DataFrame(pred_forest, PassengerId, columns = ["Survived"])
 
 # Solution is converted to CSV file.
-my_solution.to_csv('7th_titanic_forest.csv', index_label = ["PassengerId"])
+my_solution.to_csv('8th_titanic_forest.csv', index_label = ["PassengerId"])

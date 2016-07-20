@@ -13,9 +13,9 @@ train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 
 def print_columns(column_string):
-    print('train ' + column_string + 'values')
+    print('train ' + column_string + ' values')
     print(train[column_string])
     print('')
-    print('test ' + column_string + 'values')
+    print('test ' + column_string + ' values')
     print(test[column_string])
     print('')

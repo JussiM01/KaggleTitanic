@@ -50,4 +50,4 @@ PassengerId = np.array(test["PassengerId"]).astype(int)
 my_solution = pd.DataFrame(pred_forest, PassengerId, columns = ["Survived"])
 
 # Solution is converted to CSV file.
-my_solution.to_csv('my_2nd_titanic_forest.csv', index_label = ["PassengerId"])
+my_solution.to_csv('my_3rd_titanic_forest.csv', index_label = ["PassengerId"])

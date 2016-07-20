@@ -18,7 +18,7 @@ decks = {
 }
 
 def deck_num(cabin):
-    if isintance(cabin, str): return decks[cabin[0]]
+    if isinstance(cabin, str): return decks[cabin[0]]
     return 0
 
 # The file train.csv is read with pandas.

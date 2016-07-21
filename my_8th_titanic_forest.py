@@ -50,16 +50,56 @@ test["family_size"] = test["SibSp"] + test["Parch"] + 1
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
 features_forest = train[
-        ["Sex", "family_size", "Pclass", "Cabin"]].values
+        ["Sex", "family_size", "Pclass"]].values
+
+# Function which is used in spliting the train data in to training set and cross
+# validation set.
+def split_data(data, ratio):
+    import random
+    random.seed(1)
+    size = int(data.shape[0] * ratio)
+    rows = random.sample(data.index, size)
+    a = data.ix[rows]
+    b = data.drop[rows]
+    return a, b
+
+def train_classifier(hp, training_features, training_target):
+    forest = RandomForestClassifier(
+        max_depth = hp[0], min_samples_split = hp[1],
+        n_estimators = 100, random_state = 1)
+    return forest.fit(training_features, training_target)
+
+def hyper_param_optim(data, features_list):
+    # Training set and cross validation set.
+    data_0, data_1 = split_data(train, 0.5)
+
+    best_parameters = (0, 0)
+    best_result = 0.0
+    target = data_0["Survived"].values
+    features_forest = data_0[features_list].values
+
+    # Parameters for hyper-parameter optimization.
+    hyp_params = {(i, j) for i in range(2, 20) for range(2, 10)}
+
+    for hp in hyp_params:
+        forest = train_classifier(hp, features_forest, target)
+        result = cross_validate(forest, data_1)
+        if result > best_result:
+            best_result = result
+            best_parameters = hp
+
+
+
+print(best_parameters)
 
 # Building and fitting the forest.
-forest = RandomForestClassifier(max_depth = 10, min_samples_split = 2,
+forest = RandomForestClassifier(max_depth = best_parameters[0], min_samples_split = best_parameters[1],
         n_estimators = 100, random_state = 1)
 my_forest = forest.fit(features_forest, target)
 
 # Creates a table of test features.
 test_features = test[
-        ["Sex", "family_size", "Pclass", "Cabin"]].values
+        ["Sex", "family_size", "Pclass"]].values
 
 # Creates a prediction from the test features.
 pred_forest = my_forest.predict(test_features)

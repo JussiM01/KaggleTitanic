@@ -59,10 +59,9 @@ def split_data(data, ratio):
     import random
     random.seed(1)
     size = int(data.shape[0] * ratio)
-    print('data.index, size', data.index, size)
-    rows = random.sample(data.index, size)
+    rows = random.sample(list(data.index), size)
     a = data.ix[rows]
-    b = data.drop[rows]
+    b = data.drop(rows)
     return a, b
 
 def train_classifier(hp, training_features, training_target):
@@ -97,7 +96,7 @@ def cross_validate(forest, features_list, validation_data):
     features = data[features_list].values
     prediction = forest.predict(features)
     data['Prediction'] = prediction
-    p = (data['Prediction'] == data['Survived']).values_counts(normalize = True)
+    p = (data['Prediction'] == data['Survived']).value_counts(normalize = True)
     return p[True]
 
 params = hyper_param_optim(train, features_list)

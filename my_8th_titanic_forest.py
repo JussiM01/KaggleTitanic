@@ -47,10 +47,11 @@ test["Age"] = test["Age"].fillna(test["Age"].median())
 train["family_size"] = train["SibSp"] + train["Parch"] + 1
 test["family_size"] = test["SibSp"] + test["Parch"] + 1
 
+features_list = ["Sex", "family_size", "Pclass"]
+
 # Tables for survival values and values of the features are created.
 target = train["Survived"].values
-features_forest = train[
-        ["Sex", "family_size", "Pclass"]].values
+features_forest = train[features_list].values
 
 # Function which is used in spliting the train data in to training set and cross
 # validation set.
@@ -75,31 +76,39 @@ def hyper_param_optim(data, features_list):
 
     best_parameters = (0, 0)
     best_result = 0.0
-    target = data_0["Survived"].values
-    features_forest = data_0[features_list].values
+    hp_target = data_0["Survived"].values
+    hp_features = data_0[features_list].values
 
     # Parameters for hyper-parameter optimization.
     hyp_params = {(i, j) for i in range(2, 20) for range(2, 10)}
 
     for hp in hyp_params:
-        forest = train_classifier(hp, features_forest, target)
-        result = cross_validate(forest, data_1)
+        forest = train_classifier(hp, hp_features, hp_target)
+        result = cross_validate(forest, features_list, data_1)
         if result > best_result:
             best_result = result
             best_parameters = hp
+    print('best parameters: ', best_parameters)
+    return best_parameters
 
+def cross_validate(forest, features_list, validation_data):
+    data = validation_data.copy()
+    features = data[features_list].values
+    prediction = forest.predict(features)
+    data['Prediction'] = prediction
+    p = (data['Prediction'] == data['Survived']).values_counts(normalize = True)
+    return p[True]
 
-
-print(best_parameters)
+params = hyper_param_optim(train, features_list)
 
 # Building and fitting the forest.
-forest = RandomForestClassifier(max_depth = best_parameters[0], min_samples_split = best_parameters[1],
+forest = RandomForestClassifier(max_depth = params[0],
+        min_samples_split = params[1],
         n_estimators = 100, random_state = 1)
 my_forest = forest.fit(features_forest, target)
 
 # Creates a table of test features.
-test_features = test[
-        ["Sex", "family_size", "Pclass"]].values
+test_features = test[features_list].values
 
 # Creates a prediction from the test features.
 pred_forest = my_forest.predict(test_features)

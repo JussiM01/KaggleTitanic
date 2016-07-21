@@ -59,6 +59,7 @@ def split_data(data, ratio):
     import random
     random.seed(1)
     size = int(data.shape[0] * ratio)
+    print('data.index, size', data.index, size)
     rows = random.sample(data.index, size)
     a = data.ix[rows]
     b = data.drop[rows]

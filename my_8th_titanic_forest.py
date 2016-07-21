@@ -80,7 +80,7 @@ def hyper_param_optim(data, features_list):
     hp_features = data_0[features_list].values
 
     # Parameters for hyper-parameter optimization.
-    hyp_params = {(i, j) for i in range(2, 20) for range(2, 10)}
+    hyp_params = {(i, j) for i in range(2, 20) for j range(2, 10)}
 
     for hp in hyp_params:
         forest = train_classifier(hp, hp_features, hp_target)

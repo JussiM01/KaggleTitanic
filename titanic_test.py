@@ -19,3 +19,6 @@ def print_columns(column_string):
     print('test ' + column_string + ' values')
     print(test[column_string])
     print('')
+
+def has_nan_values(column_string):
+    for i in len(col)

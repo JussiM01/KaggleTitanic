@@ -25,10 +25,6 @@ def deck_num(cabin):
 # The file train.csv is read with pandas.
 train = pd.read_csv('train.csv')
 
-# The "male" and "female" values in the train table are converted to integers.
-train["Sex"][train["Sex"] == "male"] = 0
-train["Sex"][train["Sex"] == "female"] = 1
-
 # A new column deck is created.
 train["Deck"] = train["Cabin"].map(deck_num)
 

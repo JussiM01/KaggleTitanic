@@ -47,17 +47,24 @@ train["Embarked"] = train["Embarked"].fillna(0)
 # A new column "family_size" is added to the tables.
 train["family_size"] = train["SibSp"] + train["Parch"] + 1
 
-features_list_1 = ["Sex", "family_size", "Pclass", "Age"]
-features_list_2 = ["Deck", "Age", "Fare", "Embarked", "Sex"]
+features_list_1 = ["Sex", "family_size", "Age", "Survived"]
+features_list_2 = ["Sex", "Pclass", "Deck", "Survived"]
+features_list_3 = ["Sex", "Fare", "Embarked", "Survived"]
 
 data1 = train[features_list_1]
 
-sns.pairplot(data1)
+sns.pairplot(data1, hue='Sex')
 
 plt.show()
 
 data2 = train[features_list_2]
 
 sns.pairplot(data2, hue='Sex')
+
+plt.show()
+
+data3 = train[features_list_3]
+
+sns.pairplot(data3, hue='Sex')
 
 plt.show()

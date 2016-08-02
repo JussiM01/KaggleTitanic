@@ -84,13 +84,10 @@ print('Best score:', grid.best_score_)
 print('Best params:', grid.best_params_)
 model = grid.best_estimator_
 
-y_pred = model.predict(X_test)
-y_pred_proba = model.predict_proba(X_test)
-
-print('accuracy score of prediction:', accuracy_score(y_test, y_pred))
+y_pred = model.predict(test[X_vars])
 
 # Creates a data frame with "PassangerId" and "Survived" (= prediction) columns.
-PassengerId = np.array(X_test["PassengerId"]).astype(int)
+PassengerId = np.array(test["PassengerId"]).astype(int)
 solution = pd.DataFrame(y_pred, PassengerId, columns = ["Survived"])
 
 # Solution is converted to CSV file.

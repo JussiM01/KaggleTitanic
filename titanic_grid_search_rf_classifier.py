@@ -71,8 +71,8 @@ y_vars = 'Survived'
 X_train, X_test, y_train, y_test = train_test_split(train[X_vars],
     train[y_vars], random_state = 1)
 
-param_grid = {'max_depth': list(range(2, 20))}
-
+param_grid = {'max_depth': list(range(2, 20)),
+    'max_features': list(range(1,9))}
 
 model = ensemble.RandomForestClassifier(n_estimators=100,
     min_samples_split=200, random_state=1)
